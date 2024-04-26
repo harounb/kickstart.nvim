@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -272,7 +272,19 @@ require('lazy').setup({
   -- Then, because we use the `config` key, the configuration only runs
   -- after the plugin has been loaded:
   --  config = function() ... end
-
+  {
+    'synaptiko/xit.nvim',
+    lazy = true,
+    ft = 'xit',
+    build = function(plugin)
+      plugin.config(plugin, {})
+      vim.cmd [[:TSInstall! xit]]
+    end,
+    config = function()
+      require('xit').setup()
+    end,
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  },
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
