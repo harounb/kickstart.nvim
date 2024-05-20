@@ -34,7 +34,7 @@ What is Kickstart?
 
     If you don't know anything about Lua, I recommend taking some time to read through
     a guide. One possible example which will only take 10-15 minutes:
-      - https://learnxinyminutes.com/docs/lua/
+    - https://learnxinyminutes.com/docs/lua/
 
     After understanding a bit more about Lua, you can use `:help lua-guide` as a
     reference for how Neovim integrates Lua.
@@ -822,7 +822,13 @@ require('lazy').setup({
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup { n_lines = 500 }
 
-      require('mini.files').setup {options = {use_as_default_explorer = true}}
+      require('mini.files').setup {
+        options = {
+          use_as_default_explorer = true,
+        },
+      }
+
+      vim.keymap.set('n', '<leader>o', MiniFiles.open, { desc = '[O]pen files' })
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
